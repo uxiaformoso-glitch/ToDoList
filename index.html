@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llista de Tasques</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="contenidor">
+        <h1>La Meva Llista de Tasques</h1>
+        <div class="estadistiques" id="estadistiques">
+            Total: 0 | Pendents: 0 | Completades: 0
+        </div>
+
+        <div class="entrada">
+            <input type="text" id="inputTasca" placeholder="Escriu una nova tasca...">
+            <button class="boto boto-afegir" >Afegir</button>
+        </div>
+
+        <div class="filtres">
+            <button class="boto-filtre actiu" >Totes</button>
+            <button class="boto-filtre" >Pendents</button>
+            <button class="boto-filtre" >Completades</button>
+        </div>
+
+        <ul class="llista-tasques" id="llistaTasques">
+            <li class="missatge-buit">No hi ha tasques. Afegeix-ne una!</li>
+        </ul>
+
+        <button class="boto boto-eliminar-tot" >Eliminar Totes les Tasques</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
