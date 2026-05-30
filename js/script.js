@@ -36,6 +36,18 @@ function renderTasks(){
         return true;
     });
 
+    if (filteredTasks.length === 0) {
+        const voidMessage = document.createElement('li');
+        voidMessage.className = 'missatge-buit';
+        voidMessage.textContent = actualFilter === 'Totes'
+            ? 'No hi ha tasques. Afegeix-ne una!'
+            : `No hi ha tasques ${actualFilter.toLowerCase()}.`;
+        
+            listTasks.appendChild(voidMessage);
+            updateStatistics();
+            return;
+    }
+
     //Create elements
     filteredTasks.forEach(task => {
         const li = document.createElement('li');
@@ -51,7 +63,7 @@ function renderTasks(){
         //Text of the task
         const spanText = document.createElement('span');
         spanText.className = 'text-tasca';
-        spanText.textContent = task.text;
+        spanText.textContent = task.name;
 
         //Individual delete button
         const deleteButton = document.createElement('button');
@@ -73,10 +85,10 @@ function renderTasks(){
 
 //Add new task
 function addTask() {
-    const name = taskName.value.trim();
+    const nameValue = taskName.value.trim();
 
     //Validate field is not void
-    if (name === ''){
+    if (nameValue === ''){
         alert('Escribe una tarea válida.');
         return;
     }
@@ -84,7 +96,7 @@ function addTask() {
     //Basic structure object
     const newTask = {
         id: Date.now(),
-        name: name,
+        name: nameValue,
         complete: false
     };
 
@@ -111,6 +123,11 @@ function changeState(id){
 }
 
 //Delete individual task
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== id);
+    saveToLocalStorage();
+    renderTasks();
+}
 
 //Delete all tasks
 function deleteAllTasks(){
